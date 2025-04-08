@@ -91,7 +91,7 @@ wmic process get name,parentprocessid,processid | select-string 1476
 
 **Venkata Naveen Kumar Prabhuleti**  
 _Masters in Cybersecurity Analytics and Operations @ Penn State_  
-🔗 [LinkedIn](https://www.linkedin.com/in/naveen-kumar-9b55a0154/)
+[LinkedIn](https://www.linkedin.com/in/naveen-kumar-9b55a0154/)
 
 ---
 
