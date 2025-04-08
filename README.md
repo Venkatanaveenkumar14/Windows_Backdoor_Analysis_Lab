@@ -68,6 +68,46 @@ tasklist /m /fi "pid eq 1476"
 
 ---
 
+## Understanding the DLL Modules in a Malicious PowerShell Process
+
+In the screenshot below, we observe a PowerShell process (`powershell.exe`) with **PID 1476**, and several associated **dynamic link libraries (DLLs)** loaded into its memory space:
+
+ ![PID Modules - tasklist Output](./06_tasklist_dll.png)
+
+These DLLs — such as `ntdll.dll`, `wow64.dll`, `wow64base.dll`, `wow64win.dll`, `wow64con.dll`, and `wow64cpu.dll` — are **core components of the Windows operating system** and are **not inherently malicious**.
+
+> ❗ **Does every malicious payload load these exact DLLs?**  
+> No. Malware often injects itself into legitimate processes or loads additional, custom libraries at runtime.
+
+However, this particular set of DLLs represents the **minimum runtime environment** required for a PowerShell-based payload to:
+
+- Interface with system calls (`ntdll.dll`)  
+- Operate in a 32-bit compatibility layer on a 64-bit OS (`wow64*.dll`)  
+- Enable shell command execution and remote control
+
+---
+
+### Key Insight for Analysts
+
+The presence of these DLLs alone **does not confirm malicious behavior**. However, when correlated with:
+
+-  **Unusual parent processes** (e.g., spawned from `cmd.exe`)
+-  **Outbound connections** to external IPs (e.g., port `4444`)
+-  **Encoded or obfuscated PowerShell commands**
+
+…it significantly increases confidence that the process is tied to a **reverse shell or post-exploitation activity**.
+
+This type of analysis reinforces the need for **multi-dimensional threat hunting**, combining:
+- Process forensics
+- Network monitoring
+- Command-line tracing
+- Module introspection
+
+to detect stealthy malware that evades signature-based defenses.
+
+---
+---
+
 ### Step 3: Dig Deeper with WMIC
 
 ```powershell
