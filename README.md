@@ -144,6 +144,7 @@ Windows_Backdoor_Analysis_Lab/
 ├── 03_netstat_ports.png
 ├── 04_netstat_pid_modules.png
 ├── 05_wmic_analysis.jpeg
+├── 06_tasklist_dll.png
 └── README.md
 ```
 
