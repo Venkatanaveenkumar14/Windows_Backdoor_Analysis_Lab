@@ -1,10 +1,10 @@
-# 🪟 Windows Malware Analysis Lab via Metasploit
+# Windows Malware Analysis Lab via Metasploit
 
 This lab demonstrates a **realistic malware simulation using Metasploit** and focuses on **detection and analysis techniques within Windows CLI**. It's intended for **SOC analysts**, **incident responders**, and **blue teamers** looking to sharpen their skills in post-exploitation process hunting.
 
 ---
 
-## 🧰 Lab Setup
+## Lab Setup
 
 - **Attacker Machine**: Kali Linux
 - **Target**: Windows VM (Administrator Access)
@@ -12,7 +12,7 @@ This lab demonstrates a **realistic malware simulation using Metasploit** and fo
 
 ---
 
-## 🪓 Phase 1: Prepare Windows for Attack
+## Phase 1: Prepare Windows for Attack
 
 ### Disable Defender and Firewall
 
@@ -23,11 +23,11 @@ net user Administrator password1234
 ipconfig
 ```
 
-📸 ![Disable Defender](./01_disable_defender.png)
+ ![Disable Defender](./01_disable_defender.png)
 
 ---
 
-## 💥 Phase 2: Attack from Kali using Metasploit
+## Phase 2: Attack from Kali using Metasploit
 
 ### Setup Exploit and Launch Payload
 
@@ -41,11 +41,11 @@ set SMBPASS password1234
 exploit
 ```
 
-📸 ![Metasploit Attack Setup](./02_msf_attack_setup.png)
+ ![Metasploit Attack Setup](./02_msf_attack_setup.png)
 
 ---
 
-## 🕵️ Phase 3: Analyze on Windows Machine
+## Phase 3: Analyze on Windows Machine
 
 ### Step 1: Check for Open Connections
 
@@ -53,7 +53,7 @@ exploit
 netstat -naob
 ```
 
-📸 ![Netstat Connections](./03_netstat_ports.png)
+ ![Netstat Connections](./03_netstat_ports.png)
 
 ---
 
@@ -64,7 +64,7 @@ netstat -f
 tasklist /m /fi "pid eq 1476"
 ```
 
-📸 ![Modules via Tasklist](./04_netstat_pid_modules.png)
+ ![Modules via Tasklist](./04_netstat_pid_modules.png)
 
 ---
 
@@ -75,11 +75,11 @@ wmic process where processid=1476 get commandline
 wmic process get name,parentprocessid,processid | select-string 1476
 ```
 
-📸 ![WMIC Process Details](./05_wmic_analysis.jpeg)
+ ![WMIC Process Details](./05_wmic_analysis.jpeg)
 
 ---
 
-## 🧠 Key Takeaways
+## Key Takeaways
 
 - `netstat -naob` helps detect live reverse shell sessions (e.g., port 4444)
 - `tasklist` and `wmic` provide process visibility and help identify injected/malicious activity
@@ -87,15 +87,15 @@ wmic process get name,parentprocessid,processid | select-string 1476
 
 ---
 
-## 👨‍💻 Author
+## Author
 
-**Venkata Naveen Kumar Prabhuletti**  
+**Venkata Naveen Kumar Prabhuleti**  
 _Masters in Cybersecurity Analytics and Operations @ Penn State_  
 🔗 [LinkedIn](https://www.linkedin.com/in/naveen-kumar-9b55a0154/)
 
 ---
 
-## 📂 Folder Contents
+## Folder Contents
 
 ```
 Windows_Backdoor_Analysis_Lab/
@@ -107,6 +107,6 @@ Windows_Backdoor_Analysis_Lab/
 └── README.md
 ```
 
-## 📎 License
+## License
 
 MIT License
